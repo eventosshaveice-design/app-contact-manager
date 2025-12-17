@@ -1,7 +1,7 @@
 {
-  "name": "Zapp Sem Contato",
-  "short_name": "Zapp",
-  "description": "Abra conversas do WhatsApp sem salvar contatos",
+  "name": "Chamar Sem Contato",
+  "short_name": "ChamarApp",
+  "description": "Abra conversas sem salvar contatos",
   "start_url": "./app.html",
   "display": "standalone",
   "background_color": "#128C7E",
@@ -54,9 +54,9 @@
   "categories": ["utilities", "productivity"],
   "shortcuts": [
     {
-      "name": "Novo WhatsApp",
-      "short_name": "Novo",
-      "description": "Abrir novo WhatsApp",
+      "name": "Nova Conversa",
+      "short_name": "Nova",
+      "description": "Abrir nova conversa",
       "url": "./app.html",
       "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
     }
