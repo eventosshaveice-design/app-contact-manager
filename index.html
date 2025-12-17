@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zapp Sem Contato - Acesso</title>
+    <title>App Sem Contato - Acesso</title>
     <meta name="theme-color" content="#128C7E">
     
     <style>
@@ -153,9 +153,9 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="logo" alt="WhatsApp Logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="logo" alt="App Logo">
         
-        <h1>Zapp Sem Contato</h1>
+        <h1>App Sem Contato</h1>
         <p class="subtitle">Digite a senha de acesso fornecida após a compra</p>
         
         <input type="password" id="passwordInput" class="auth-input" placeholder="Digite sua senha" autofocus>
@@ -191,7 +191,7 @@
         // ============================================
         // CONFIGURAÇÃO DO BANCO DE DADOS
         // ============================================
-        const DB_NAME = 'ZappAuthDB';
+        const DB_NAME = 'AppAuthDB';
         const DB_VERSION = 1;
         const STORE_NAME = 'senhas';
         let db = null;
@@ -199,7 +199,7 @@
         // Hash SHA-256 simples (para demonstração - em produção use mais seguro)
         async function hashSenha(senha) {
             const encoder = new TextEncoder();
-            const data = encoder.encode(senha + 'zapp2025_salt');
+            const data = encoder.encode(senha + 'app2025_salt');
             const hashBuffer = await crypto.subtle.digest('SHA-256', data);
             const hashArray = Array.from(new Uint8Array(hashBuffer));
             return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
@@ -229,13 +229,13 @@
                         const store = db.createObjectStore(STORE_NAME, { keyPath: 'id' });
                         console.log('Object store criado');
                         
-                        // Adiciona senha padrão (ZAPP2025) criptografada
+                        // Adiciona senha padrão (APP2025) criptografada
                         event.target.transaction.oncomplete = async () => {
                             const transaction = db.transaction(STORE_NAME, 'readwrite');
                             const store = transaction.objectStore(STORE_NAME);
                             
-                            // Senha padrão: ZAPP2025
-                            const senhaHash = await hashSenha('ZAPP2025');
+                            // Senha padrão: APP2025
+                            const senhaHash = await hashSenha('APP2025');
                             
                             store.put({
                                 id: 'senha_acesso',
@@ -344,7 +344,7 @@
                         
                         // Criar token de sessão
                         const token = btoa(Date.now() + ':' + Math.random().toString(36).substr(2));
-                        sessionStorage.setItem('zapp_token', token);
+                        sessionStorage.setItem('app_token', token);
                         
                         // Redirecionar para app.html
                         window.location.href = 'app.html?token=' + encodeURIComponent(token);
